@@ -1,23 +1,24 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom'; // ✅ Import only Routes & Route here
 import Navbar from './components/Navbar';
-
-// TODO: Import react router dom here
-
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import Projects from './pages/Projects'; // or wherever your Projects.jsx is
 import './styles/App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Navbar />
-        <main className="main-content">
-         {/* TODO: Add react router dom routes here */}
-         
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <div className="app">
+      <Navbar />
+      <main className="main-content">
+        {/* ✅ Define Routes here */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 

@@ -1,25 +1,40 @@
 import React, { useState, useEffect } from 'react';
-
-// TODO: Import axios here
-
+import axios from 'axios'; // ✅ Added axios for HTTP requests
 
 import ProjectCard from '../components/ProjectCard';
 import '../styles/Projects.css';
 
 const Projects = () => {
+  // ✅ State to hold fetched repos, loading state, and any fetch error
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
- // TODO: Fetch repositories from GitHub API using axios and useEffect and set the repos state, also handle the loading and error states
- // API: https://api.github.com/users/YOUR_GITHUB_USERNAME/repos?per_page=10&sort=updated
+  // ✅ useEffect to fetch GitHub repositories once when component mounts
+  useEffect(() => {
+    const fetchRepos = async () => {
+      try {
+        // 🔗 Replace with your GitHub username
+        const response = await axios.get(
+          'https://api.github.com/users/Abdulrahman-Midraara/repos?per_page=10&sort=updated'
+        );
+        setRepos(response.data); // ⬅️ Save data in repos state
+        setLoading(false);       // ✅ Done loading
+      } catch (err) {
+        setError('Failed to fetch repositories');
+        setLoading(false);
+      }
+    };
 
+    fetchRepos(); // 🚀 Trigger fetch
+  }, []);
 
-
+  // ✅ Loading indicator
   if (loading) {
     return <div className="loading">Loading repositories...</div>;
   }
 
+  // ❌ Error indicator
   if (error) {
     return <div className="error">{error}</div>;
   }
@@ -28,9 +43,7 @@ const Projects = () => {
     <div className="projects-container">
       <div className="projects-header">
         <h1 className="projects-title">GitHub Projects</h1>
-        <p className="projects-subtitle">
-          My latest GitHub repositories.
-        </p>
+        <p className="projects-subtitle">My latest GitHub repositories.</p>
       </div>
 
       <div className="projects-grid">
