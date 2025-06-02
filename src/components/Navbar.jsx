@@ -1,13 +1,13 @@
 import React from 'react';
 
-// ✅ FIXED: Import Link component for client-side navigation
+// ✅ Import routing tools for navigation and route highlighting
 import { Link, useLocation } from 'react-router-dom';
 
 import { Github } from 'lucide-react';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
-  const location = useLocation(); // Optional: can be used to highlight active route if needed
+  const location = useLocation(); // ✅ Used to highlight the current active link
 
   return (
     <nav className="navbar">
@@ -21,15 +21,19 @@ const Navbar = () => {
         {/* ✅ Navigation Menu */}
         <ul className="navbar-menu">
           <li className="navbar-item">
-            {/* ✅ Home Route */}
             <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
               Home
             </Link>
           </li>
           <li className="navbar-item">
-            {/* ✅ Projects Route */}
             <Link to="/projects" className={location.pathname === '/projects' ? 'active' : ''}>
               Projects
+            </Link>
+          </li>
+          <li className="navbar-item">
+            {/* ✅ New Contact Route */}
+            <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
+              Contact
             </Link>
           </li>
         </ul>
