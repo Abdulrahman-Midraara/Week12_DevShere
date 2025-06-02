@@ -18,12 +18,15 @@ function App() {
     <div className="app">
       {/* ✅ Always visible Navbar */}
       <Navbar />
-
+      
+      
       <main className="main-content">
-        {/* ✅ TailwindCSS test heading - temporary check */}
+      {/* ✅ Tailwind test heading removed after confirming styling is working */}
+
+        {/* ✅ TailwindCSS test heading - temporary check 
         <h1 className="text-3xl font-bold text-green-600 underline">
           ✅ Tailwind is working!
-        </h1>
+        </h1>*/}
 
         {/* ✅ Define all client-side routes */}
         <Routes>
